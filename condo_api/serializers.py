@@ -11,3 +11,13 @@ class ApartamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Apartamento
         fields = "__all__"
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+class ControleDeAcessoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ControleDeAcesso
+        fields = "__all__"

@@ -19,3 +19,12 @@ def get_condominios(request):
         serializer = CondominioSerializer(condominios, many=True)
         return Response(serializer.data)
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_apartamentos(request):
+    if request.method == 'GET':
+        apartamentos = Apartamento.objects.all()
+
+        serializer = ApartamentoSerializer(apartamentos, many=True)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)

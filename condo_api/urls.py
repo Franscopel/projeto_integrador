@@ -1,10 +1,13 @@
 from django.urls import path
 
-from . import views
+from .views.condominio_views import gerenciador_condominios
+from .views.apartamento_views import gerenciador_apartamentos
+from .views.tag_views import gerenciador_tags
+from .views.controle_de_acesso_views import gerenciador_controle_de_acessos
 
 urlpatterns = [
-    path("condominios", views.get_condominios, name = "get_all_condominios"),
-    path("apartamentos", views.get_apartamentos, name = "get_all_apartamentos"),
-    path("tags", views.get_tags, name = "get_all_tags"),
-    path("controle-de-acessos", views.get_controle_de_acessos, name = "get_all_controle-de-acesos")
+    path("condominios", gerenciador_condominios, name = "gerenciador_condominios"),
+    path("apartamentos", gerenciador_apartamentos, name = "gerenciador_apartamentos"),
+    path("tags", gerenciador_tags, name = "gerenciador_tags"),
+    path("controle-de-acessos", gerenciador_controle_de_acessos, name = "gerenciador_controle-de-acessos"),
 ]

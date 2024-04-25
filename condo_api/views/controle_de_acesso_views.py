@@ -6,7 +6,7 @@ from ..models import ControleDeAcesso
 
 from ..serializers import ControleDeAcessoSerializer
 
-@api_view(['GET', 'POST', 'PUT'])
+@api_view(['GET', 'POST'])
 def gerenciador_controle_de_acessos(request):
     if request.method == 'GET':
 
@@ -26,17 +26,3 @@ def gerenciador_controle_de_acessos(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
-    if request.method == 'PUT':
-        id_controle_de_acesso = request.data["id"]
-
-        try: 
-            update_controle_de_acesso=ControleDeAcesso.objects.get(id=id_controle_de_acesso)
-        except:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        
-        serializer=ControleDeAcessoSerializer(update_controle_de_acesso, request.data)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-        return Response(status=status.HTTP_400_BAD_REQUEST)

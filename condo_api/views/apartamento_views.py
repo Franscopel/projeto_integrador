@@ -6,7 +6,7 @@ from ..models import Apartamento
 
 from ..serializers import ApartamentoSerializer
 
-@api_view(['GET', 'POST', 'PUT'])
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def gerenciador_apartamentos(request):
     if request.method == 'GET':
 
@@ -40,3 +40,13 @@ def gerenciador_apartamentos(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'DELETE':
+        id_apartamento = request.data["id"]
+
+        try: 
+            delete_apartamento=Apartamento.objects.get(id=id_apartamento)
+            Apartamento.delete(delete_apartamento)
+            return Response(status=status.HTTP_202_ACCEPTED)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)

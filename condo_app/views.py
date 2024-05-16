@@ -18,7 +18,11 @@ class CondominioCreateView(CreateView):
     success_message = 'Condomínio cadastrado com sucesso!'
 
     def get_success_url(self):
-        return reverse('condominio')
+        return reverse('condo_app:condominio')
+    
+    def form_valid(self, form):
+        form.instance.save()
+        return super().form_valid(form)
     
 class ApartamentoCreateView(CreateView):
     model = Apartamento
@@ -27,7 +31,11 @@ class ApartamentoCreateView(CreateView):
     success_message = 'Apartamento cadastrado com sucesso!'
 
     def get_success_url(self):
-        return reverse('apartamento')
+        return reverse('condo_app:apartamento')
+    
+    def form_valid(self, form):
+        form.instance.save()
+        return super().form_valid(form)
     
 class TagCreateView(CreateView):
     model = Tag
@@ -36,4 +44,8 @@ class TagCreateView(CreateView):
     success_message = 'Tag cadastrada com sucesso!'
 
     def get_success_url(self):
-        return reverse('tag')
+        return reverse('condo_app:tag')
+    
+    def form_valid(self, form):
+        form.instance.save()
+        return super().form_valid(form)

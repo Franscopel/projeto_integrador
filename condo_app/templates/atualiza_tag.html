@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizacão de Tags</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <h1>Atualização de Tags</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">Por favor, corrija os erros abaixo:</p>
+        <ul>
+            {% for error in form.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+
+    <form method="post" class="form-labels">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+            <a href="{% url 'condo_app:manut_tag' %}" class="btn btn-secondary">Voltar</a>
+        <div class="button-container">
+    </form>
+</body>
+</html>

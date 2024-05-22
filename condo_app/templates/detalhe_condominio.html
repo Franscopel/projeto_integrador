@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Detalhes Condomínio</title>
+    <style>
+        body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        }
+
+        h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        .condominio-detail {
+        width: 80%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .condominio-info {
+        margin-bottom: 20px;
+        }
+
+        .condominio-info label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        }
+
+        .condominio-info p {
+        margin: 0;
+        }
+        .button-container a {
+        flex: 0 0 auto;
+        margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+        .condominio-detail {
+            width: 95%;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="condominio-detail">
+        <h1>Detalhes Condomínio</h1>
+
+        <div class="condominio-info">
+            <label>Nome:</label>
+            <p>{{ object.nome }}</p>
+        </div>
+
+        <div class="condominio-info">
+            <label>CNPJ:</label>
+            <p>{{ object.cnpj }}</p>
+        </div>
+
+        <div class="condominio-info">
+            <label>Endereço:</label>
+            <p>{{ object.endereco }}</p>
+        </div>
+
+        <div class="condominio-info">
+            <label>CEP:</label>
+            <p>{{ object.cep }}</p>
+        </div>
+
+        <div class="condominio-info">
+            <label>Número de Blocos:</label>
+            <p>{{ object.num_blocos }}</p>
+        </div>
+
+        <div class="condominio-info">
+            <label>Número de Apartamentos:</label>
+            <p>{{ object.num_aptos }}</p>
+        </div>
+        <div class="button-container">
+            <a href="{% url 'condo_app:manut_condominio' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>

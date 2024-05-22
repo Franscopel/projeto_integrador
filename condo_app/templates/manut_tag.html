@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        }
+
+        h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: separate;
+            border: none;
+        }
+
+        th, td {
+            border: none;
+            padding: 15px;
+        }
+
+        th {
+        text-align: left;
+        background-color: #f5f5f5;
+        }
+
+        @media (max-width: 768px) {
+        table {
+            display: block;
+            overflow-x: auto;
+        }
+
+        th, td {
+            white-space: nowrap;
+        }
+        }
+        .odd {
+        background-color: #f8f9fa;
+        }
+
+        .even {
+        background-color: #fff;
+        }
+
+        .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        }
+
+        .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        }
+
+        .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+        }
+        .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh; 
+        }
+        .container h1 {
+        margin-bottom: 20px;
+        }
+        .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        }
+
+        .button-container a {
+        flex: 0 0 auto;
+        margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tags</h1>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Número da Tag</th>
+                    <th>Número Identificador Sequencial</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in object_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ tag.num_tag }}</td>
+                    <td>{{ tag.num_sequencial }}</td>
+                    <td>
+                        <a href="{% url 'condo_app:detalhe_tag' tag.pk %}" class="btn btn-secondary btn-sm">Detalhar</a>
+                        <a href="{% url 'condo_app:atualiza_tag' tag.pk %}" class="btn btn-primary btn-sm">Atualizar</a>
+                        <a href="{% url 'condo_app:excluir_tag' tag.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="nova_tag" class="btn btn-primary">Cadastrar</button>
+            <a href="{% url 'condo_app:index' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div> 
+</body>
+</html>

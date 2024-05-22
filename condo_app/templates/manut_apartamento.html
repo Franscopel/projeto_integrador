@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            border-collapse: separate;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: none;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        .odd {
+            background-color: #f8f9fa;
+        }
+
+        .even {
+            background-color: #fff;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; 
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            flex: 0 0 auto;
+            margin: 0 10px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apartamentos</h1>
+    <div class="container">
+        <form method="get">
+            <label for="condominio_select">Selecione o condomínio:</label>
+            <select name="condominio_id" id="condominio_select">
+                <option value="">-- Selecione --</option>
+                {% for condominio in condominios %}
+                    <option value="{{ condominio.pk }}">{{ condominio.nome }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+
+        <table class="table hide">
+            <thead>
+                <tr>
+                    <th>Bloco</th>
+                    <th>Número do Apartamento</th>
+                    <th>Andar</th>
+                    <th>Tags</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for apartamento in object_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ apartamento.bloco }}</td>
+                    <td>{{ apartamento.num_do_apto }}</td>
+                    <td>{{ apartamento.andar }}</td>
+                    <td>{{ apartamento.tags }}</td>
+                    <td>
+                        <a href="{% url 'condo_app:detalhe_apartamento' apartamento.pk %}" class="btn btn-secondary btn-sm">Detalhar</a>
+                        <a href="{% url 'condo_app:atualiza_apartamento' apartamento.pk %}" class="btn btn-primary btn-sm">Atualizar</a>
+                        <a href="{% url 'condo_app:excluir_apartamento' apartamento.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="novo_apartamento" class="btn btn-primary">Cadastrar</a>
+            <a href="{% url 'condo_app:index' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('condominio_select').addEventListener('change', function() {
+            var table = document.querySelector('.table');
+            if (this.value !== '') {
+                table.classList.remove('hide');
+            } else {
+                table.classList.add('hide');
+            }
+        });
+    </script>
+    </body>
+</html>

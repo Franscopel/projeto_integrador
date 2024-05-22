@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Detalhes Apartamento</title>
+    <style>
+        /* General Styles */
+        body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;  /* Light background */
+        }
+
+        h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        /* Detail Container */
+        .apartamento-detail {
+        width: 80%;  /* Adjust width as needed */
+        max-width: 1000px;  /* Set a maximum width for larger screens */
+        margin: 0 auto;  /* Center horizontally */
+        padding: 20px;
+        background-color: #fff;  /* White background */
+        border-radius: 10px;  /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+        }
+
+        /* Detail Information */
+        .apartamento-info {
+        margin-bottom: 20px;
+        }
+
+        .apartamento-info label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        }
+
+        .apartamento-info p {
+        margin: 0;
+        }
+        .button-container a {
+        flex: 0 0 auto; /* Allow buttons to shrink/grow */
+        margin: 0 10px; /* Add spacing between buttons */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+        .apartamento-detail {
+            width: 95%;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="apartamento-detail">
+        <h1>Detalhes Condomínio</h1>
+
+        <div class="apartamento-info">
+            <label>Condominio:</label>
+            <p>{{ object.condominio }}</p>
+        </div>
+
+        <div class="apartamento-info">
+            <label>Bloco:</label>
+            <p>{{ object.bloco }}</p>
+        </div>
+
+        <div class="apartamento-info">
+            <label>Número do Apartamento:</label>
+            <p>{{ object.num_do_apto }}</p>
+        </div>
+
+        <div class="apartamento-info">
+            <label>Andar:</label>
+            <p>{{ object.andar }}</p>
+        </div>
+
+        <div class="apartamento-info">
+            <label>Tags:</label>
+            <p>{{ object.tags }}</p>
+        </div>
+
+        <div class="button-container">
+            <a href="{% url 'condo_app:manut_apartamento' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>
